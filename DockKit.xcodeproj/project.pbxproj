@@ -10,8 +10,6 @@
 		09C131852514454C00B2EDFD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09C131842514454C00B2EDFD /* Info.plist */; };
 		09C131882514454C00B2EDFD /* DockKit.c in Sources */ = {isa = PBXBuildFile; fileRef = 09C131872514454C00B2EDFD /* DockKit.c */; };
 		09C13198251451C300B2EDFD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C13197251451C300B2EDFD /* CoreFoundation.framework */; };
-		09D4278B2517A3630002B291 /* symrez.c in Sources */ = {isa = PBXBuildFile; fileRef = 09C1319525144F4600B2EDFD /* symrez.c */; };
-		09D4278D2517A3680002B291 /* subhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 09C131B325145B8000B2EDFD /* subhook.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,14 +17,7 @@
 		09C131842514454C00B2EDFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		09C131862514454C00B2EDFD /* DockKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DockKit.h; sourceTree = "<group>"; };
 		09C131872514454C00B2EDFD /* DockKit.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = DockKit.c; sourceTree = "<group>"; };
-		09C1319425144F4600B2EDFD /* symrez.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = symrez.h; path = DockKit/symrez.h; sourceTree = SOURCE_ROOT; };
-		09C1319525144F4600B2EDFD /* symrez.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = symrez.c; path = DockKit/symrez.c; sourceTree = SOURCE_ROOT; };
 		09C13197251451C300B2EDFD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		09C131AF25145B8000B2EDFD /* subhook_x86.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = subhook_x86.c; sourceTree = "<group>"; };
-		09C131B025145B8000B2EDFD /* subhook_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subhook_private.h; sourceTree = "<group>"; };
-		09C131B125145B8000B2EDFD /* subhook_unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = subhook_unix.c; sourceTree = "<group>"; };
-		09C131B325145B8000B2EDFD /* subhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = subhook.c; sourceTree = "<group>"; };
-		09C131B425145B8000B2EDFD /* subhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subhook.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,13 +60,6 @@
 		09C131822514454C00B2EDFD /* DockKit */ = {
 			isa = PBXGroup;
 			children = (
-				09C131B025145B8000B2EDFD /* subhook_private.h */,
-				09C131B125145B8000B2EDFD /* subhook_unix.c */,
-				09C131AF25145B8000B2EDFD /* subhook_x86.c */,
-				09C131B425145B8000B2EDFD /* subhook.h */,
-				09C131B325145B8000B2EDFD /* subhook.c */,
-				09C1319525144F4600B2EDFD /* symrez.c */,
-				09C1319425144F4600B2EDFD /* symrez.h */,
 				09C131862514454C00B2EDFD /* DockKit.h */,
 				09C131872514454C00B2EDFD /* DockKit.c */,
 				09C131832514454C00B2EDFD /* Supporting Files */,
@@ -159,8 +143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C131882514454C00B2EDFD /* DockKit.c in Sources */,
-				09D4278D2517A3680002B291 /* subhook.c in Sources */,
-				09D4278B2517A3630002B291 /* symrez.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
