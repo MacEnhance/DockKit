@@ -1,0 +1,13 @@
+//
+//  PrefixHeader.pch
+//  DockKit
+//
+//  Created by Jeremy on 9/17/20.
+//
+//
+
+#ifndef DockKit_PrefixHeader_pch
+#define DockKit_PrefixHeader_pch
+
+#endif
+
