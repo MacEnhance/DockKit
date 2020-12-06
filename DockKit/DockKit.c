@@ -57,8 +57,14 @@
      long pagesize = sysconf(_SC_PAGESIZE);
      void *address = (void *)((long)_coreDragRegisterIfNeeded & ~(pagesize - 1));
      mprotect(address, 4096, PROT_READ | PROT_WRITE | PROT_EXEC);
+#if defined(__x86_64__)
      *(uint8_t *)_coreDragRegisterIfNeeded = 0xc3; //0xc3 = return;
-     
+#else //Don't remember if arm64 is big or little endian but this will guarentee its in the right order
+     *(uint8_t *)_coreDragRegisterIfNeeded = 0xc0;
+     *(uint8_t *)(_coreDragRegisterIfNeeded + 1) = 0x03;
+     *(uint8_t *)(_coreDragRegisterIfNeeded + 2) = 0x5f;
+     *(uint8_t *)(_coreDragRegisterIfNeeded + 3) = 0xd6;
+#endif
      free(sr_appkit);
  }
 
