@@ -10,17 +10,16 @@
 		091CE88025633639008E52AF /* SymRez.c in Sources */ = {isa = PBXBuildFile; fileRef = 091CE87F25633639008E52AF /* SymRez.c */; };
 		09C131852514454C00B2EDFD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09C131842514454C00B2EDFD /* Info.plist */; };
 		09C131882514454C00B2EDFD /* DockKit.c in Sources */ = {isa = PBXBuildFile; fileRef = 09C131872514454C00B2EDFD /* DockKit.c */; };
-		09C13198251451C300B2EDFD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C13197251451C300B2EDFD /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		091CE87E25633639008E52AF /* SymRez.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SymRez.h; sourceTree = "<group>"; };
 		091CE87F25633639008E52AF /* SymRez.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SymRez.c; sourceTree = "<group>"; };
+		096B58D4266F2F9F006BFE93 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		09C1317B2514454C00B2EDFD /* DockKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DockKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C131842514454C00B2EDFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		09C131862514454C00B2EDFD /* DockKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DockKit.h; sourceTree = "<group>"; };
 		09C131872514454C00B2EDFD /* DockKit.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = DockKit.c; sourceTree = "<group>"; };
-		09C13197251451C300B2EDFD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,7 +27,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09C13198251451C300B2EDFD /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,7 +53,7 @@
 		09C1317D2514454C00B2EDFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09C13197251451C300B2EDFD /* CoreFoundation.framework */,
+				096B58D4266F2F9F006BFE93 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -265,7 +263,10 @@
 		09C131922514454C00B2EDFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -277,6 +278,7 @@
 				INFOPLIST_FILE = DockKit/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/MacEnhance/Plugins";
 				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jslegendre.DockKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = bundle;
@@ -286,7 +288,10 @@
 		09C131932514454C00B2EDFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					arm64e,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -298,6 +303,7 @@
 				INFOPLIST_FILE = DockKit/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/MacEnhance/Plugins";
 				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.jslegendre.DockKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = bundle;

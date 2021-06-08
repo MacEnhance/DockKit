@@ -9,28 +9,29 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <objc/objc-runtime.h>
 #include <dlfcn.h>
+#if defined(__x86_64__)
 #include <sys/mman.h>
 #include "SymRez.h"
+#endif
 
- __attribute__((constructor))
- static void ctor() {
+CFStringRef bundleIdentifier_swizzle(id self, SEL sel) {
+    return CFSTR("Xom.apple.dock");
+}
+
+__attribute__((constructor))
+static void loadAppKit() {
      
-     // Swizzle [NSBundle bundleIdentifier] to not return 'com.apple.dock'
-     IMP ogBID = class_replaceMethod(objc_getClass("NSBundle"),
-                                     sel_registerName("bundleIdentifier"),
-                                     method_getImplementation((Method)^{ return CFSTR("Xom.apple.dock"); }),
-                                     NULL);
+     Method bundleIdentifier = class_getInstanceMethod(objc_getClass("NSBundle"), sel_getUid("bundleIdentifier"));
+     IMP bundleIdentifierImp = method_getImplementation(bundleIdentifier);
+     method_setImplementation(bundleIdentifier, (IMP)bundleIdentifier_swizzle);
 
      // dlopen AppKit which will call [NSApplication load], which is where our problem lies
      dlopen("/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit", RTLD_LAZY);
      
-     // Replace the OG implementation because leaving that swizzle WILL cause more problems down the road
-     class_replaceMethod(objc_getClass("NSBundle"),
-                         sel_registerName("bundleIdentifier"),
-                         ogBID,
-                         NULL);
+     method_setImplementation(bundleIdentifier, bundleIdentifierImp);
      
-     
+     // For some reason CoreDrag bugs only happen on Intel
+#if defined(__x86_64__)
      symrez_t sr_appkit = symrez_new("AppKit");
      if(!sr_appkit) {
          // Should probably handle this more elegantly but 🤷🏻‍♂️
@@ -57,14 +58,8 @@
      long pagesize = sysconf(_SC_PAGESIZE);
      void *address = (void *)((long)_coreDragRegisterIfNeeded & ~(pagesize - 1));
      mprotect(address, 4096, PROT_READ | PROT_WRITE | PROT_EXEC);
-#if defined(__x86_64__)
-     *(uint8_t *)_coreDragRegisterIfNeeded = 0xc3; //0xc3 = return;
-#else //Don't remember if arm64 is big or little endian but this will guarentee its in the right order
-     *(uint8_t *)_coreDragRegisterIfNeeded = 0xc0;
-     *(uint8_t *)(_coreDragRegisterIfNeeded + 1) = 0x03;
-     *(uint8_t *)(_coreDragRegisterIfNeeded + 2) = 0x5f;
-     *(uint8_t *)(_coreDragRegisterIfNeeded + 3) = 0xd6;
-#endif
-     free(sr_appkit);
- }
 
+     *(uint8_t *)_coreDragRegisterIfNeeded = 0xc3; //0xc3 = return;
+     free(sr_appkit);
+#endif
+ }
